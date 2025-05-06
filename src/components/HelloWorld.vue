@@ -6,13 +6,24 @@ defineProps({
 })
 
 const count = ref(0)
+
+const handleClick = async () => {
+  count.value++
+  try {
+    const response = await fetch('https://comet-nova-5.resiz.es/')
+    const data = await response.json()
+    console.log('Fetched data:', data)
+  } catch (error) {
+    console.error('Fetch error:', error)
+  }
+}
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
 
   <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
+    <button type="button" @click="handleClick">count is {{ count }}</button>
     <p>
       Edit
       <code>components/HelloWorld.vue</code> to test HMR
